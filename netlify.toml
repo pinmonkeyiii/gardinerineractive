@@ -1,4 +1,3 @@
 [build]
-  base = "web-bcolegardiner.client"
-  command = "npm ci && npm run build"
-  publish = "dist"
+  command = "cd web-bcolegardiner.client && npm ci && npm run build"
+  publish = "web-bcolegardiner.client/dist"
