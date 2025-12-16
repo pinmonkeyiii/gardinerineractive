@@ -15,20 +15,24 @@
     <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <BuildClient>false</BuildClient>
+  </PropertyGroup>
+
   <Target Name="CleanPublishDir" BeforeTargets="PrepareForPublish">
     <Message Importance="high" Text="Cleaning publish directory: $(PublishDir)" />
     <RemoveDir Directories="$(PublishDir)" Condition="Exists('$(PublishDir)')" />
   </Target>
 
   <!-- Build the client only when publishing -->
-  <Target Name="BuildClient" BeforeTargets="Publish">
+  <Target Name="BuildClient" BeforeTargets="Publish" Condition="'$(BuildClient)' == 'true'">
     <Message Importance="high" Text="Building Vite client..." />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm ci" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="$(SpaBuild)" />
   </Target>
 
   <!-- Copy dist directly into the publish output's wwwroot -->
-  <Target Name="CopyClientDistToPublish" AfterTargets="Publish">
+  <Target Name="CopyClientDistToPublish" AfterTargets="Publish" Condition="'$(BuildClient)' == 'true'">
     <ItemGroup>
       <ClientDist Include="$(SpaRoot)$(SpaDist)**\*" />
     </ItemGroup>
@@ -49,11 +53,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <!--
   <ItemGroup>
     <ProjectReference Include="..\web-bcolegardiner.client\web-bcolegardiner.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
+  -->
 
   <ItemGroup>
     <None Update="spa.proxy.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
