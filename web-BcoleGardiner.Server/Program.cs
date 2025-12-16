@@ -9,8 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp", policy =>
-        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+    options.AddPolicy("AllowNetlify",
+        policy => policy
+            .WithOrigins("https://gardinerinteractive.com", "https://*.netlify.app")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 });
 
 // LiteDB single instance (thread-safe inside one process)
@@ -35,6 +38,7 @@ app.Urls.Add($"http://0.0.0.0:{port}");
 
 // Configure middleware
 app.UseCors("AllowReactApp");
+app.UseCors("AllowNetlify");
 app.UseDefaultFiles();
 app.MapControllers();
 app.UseStaticFiles();
