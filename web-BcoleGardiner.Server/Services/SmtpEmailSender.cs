@@ -1,0 +1,34 @@
+﻿// Services/SmtpEmailSender.cs
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
+using Microsoft.Extensions.Options;
+using web_bcolegardiner.server.Services;
+
+namespace WebBcoleGardiner.Server.Services;
+
+public class SmtpEmailSender : IEmailSender
+{
+    private readonly EmailOptions _opt;
+    public SmtpEmailSender(IOptions<EmailOptions> opt) => _opt = opt.Value;
+
+    public async Task SendAsync(string subject, string htmlBody, string? replyTo = null, CancellationToken ct = default)
+    {
+        var msg = new MimeMessage();
+        msg.From.Add(MailboxAddress.Parse(_opt.From));
+        msg.To.Add(MailboxAddress.Parse(_opt.To));
+        msg.Subject = subject;
+
+        if (!string.IsNullOrWhiteSpace(replyTo))
+            msg.ReplyTo.Add(MailboxAddress.Parse(replyTo));
+
+        msg.Body = new BodyBuilder { HtmlBody = htmlBody }.ToMessageBody();
+
+        using var client = new SmtpClient();
+        var secure = _opt.Smtp.UseStartTls ? SecureSocketOptions.StartTls : SecureSocketOptions.Auto;
+        await client.ConnectAsync(_opt.Smtp.Host, _opt.Smtp.Port, secure, ct);
+        await client.AuthenticateAsync(_opt.Smtp.User, _opt.Smtp.Password, ct);
+        await client.SendAsync(msg, ct);
+        await client.DisconnectAsync(true, ct);
+    }
+}

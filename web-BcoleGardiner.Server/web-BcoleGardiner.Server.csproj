@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>web_BcoleGardiner.Server</RootNamespace>
+    <UserSecretsId>f670a83f-a771-4ddf-b53b-b4eaff05cab3</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <SpaRoot>..\web-bcolegardiner.client\</SpaRoot>
+    <SpaDist>dist\</SpaDist>
+    <SpaBuild>npm run build</SpaBuild>
+    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+    <SpaProxyServerUrl>https://localhost:63405</SpaProxyServerUrl>
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+  </PropertyGroup>
+
+  <Target Name="CleanPublishDir" BeforeTargets="PrepareForPublish">
+    <Message Importance="high" Text="Cleaning publish directory: $(PublishDir)" />
+    <RemoveDir Directories="$(PublishDir)" Condition="Exists('$(PublishDir)')" />
+  </Target>
+
+  <!-- Build the client only when publishing -->
+  <Target Name="BuildClient" BeforeTargets="Publish">
+    <Message Importance="high" Text="Building Vite client..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm ci" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="$(SpaBuild)" />
+  </Target>
+
+  <!-- Copy dist directly into the publish output's wwwroot -->
+  <Target Name="CopyClientDistToPublish" AfterTargets="Publish">
+    <ItemGroup>
+      <ClientDist Include="$(SpaRoot)$(SpaDist)**\*" />
+    </ItemGroup>
+
+    <MakeDir Directories="$(PublishDir)wwwroot" />
+
+    <Copy
+      SourceFiles="@(ClientDist)"
+      DestinationFiles="@(ClientDist->'$(PublishDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+  
+  <ItemGroup>
+    <PackageReference Include="LiteDB" Version="5.0.21" />
+    <PackageReference Include="MailKit" Version="4.14.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.*" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="SendGrid" Version="9.29.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\web-bcolegardiner.client\web-bcolegardiner.client.esproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="spa.proxy.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
+</Project>

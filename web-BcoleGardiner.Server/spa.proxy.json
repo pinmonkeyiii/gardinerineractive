@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "https://json.schemastore.org/spa.proxy.manifest.json",
+  "appBuilder": {
+    "SpaProxyServerUrl": "https://localhost:5173",
+    "ProxyTimeout": "00:05:00",
+    "command": "npm run dev",
+    "launchCommand": "npm run dev",
+    "workingDirectory": "..\\web-bcolegardiner.client",
+    "useHTTPS": true,
+    "port": 63405
+  }
+}

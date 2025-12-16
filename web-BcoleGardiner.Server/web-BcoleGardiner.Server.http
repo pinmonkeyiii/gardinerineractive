@@ -1,0 +1,6 @@
+@web_BcoleGardiner.Server_HostAddress = http://localhost:5055
+
+GET {{web_BcoleGardiner.Server_HostAddress}}/
+Accept: application/json
+
+###

@@ -1,0 +1,9 @@
+<Project>
+  <Target Name="SetWebConfigPublishName" BeforeTargets="ComputeFilesToPublish">
+    <ItemGroup>
+      <ResolvedFileToPublish Update="web.config">
+        <TargetPath>web-build.config</TargetPath>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+</Project>
