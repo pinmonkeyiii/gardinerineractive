@@ -35,7 +35,6 @@ app.Urls.Add($"http://0.0.0.0:{port}");
 
 // Configure middleware
 app.UseCors("AllowReactApp");
-app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.MapControllers();
 app.UseStaticFiles();
@@ -43,6 +42,7 @@ app.UseStaticFiles();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+    app.UseHttpsRedirection();
 }
 else
 {
