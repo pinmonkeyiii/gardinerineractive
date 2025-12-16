@@ -17,4 +17,4 @@ WORKDIR /app
 ENV ASPNETCORE_URLS=http://0.0.0.0:${PORT}
 
 COPY --from=build /app/publish .
-CMD ["dotnet", "web-BColeGardiner.Server.dll"]
+CMD ["dotnet", "web-BcoleGardiner.Server.dll"]
