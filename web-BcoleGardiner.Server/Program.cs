@@ -30,6 +30,9 @@ builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 
 var app = builder.Build();
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
 // Configure middleware
 app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
