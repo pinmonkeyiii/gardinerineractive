@@ -33,7 +33,7 @@ export default defineConfig({
         }
     },
     build: {
-        outDir: "../web-BcoleGardiner.Server/wwwroot", 
-        emptyOutDir: true, // clears old assets
+        outDir: "dist",
+        emptyOutDir: true
     },
 })
