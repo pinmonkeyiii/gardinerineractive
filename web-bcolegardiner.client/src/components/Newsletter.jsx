@@ -34,13 +34,16 @@ export default function Newsletter() {
                 Get updates on upcoming books, writing insights, and more.
             </p>
 
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl">
+            <form
+                onSubmit={handleSubmit}
+                className="grid gap-3 sm:grid-cols-2 sm:items-center"
+            >
                 <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your Name (optional)"
-                    className="flex-1 rounded-md border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400"
+                    className="h-11 w-full rounded-md border border-slate-300 px-4 focus:outline-none focus:ring-2 focus:ring-slate-400"
                 />
                 <input
                     type="email"
@@ -48,11 +51,12 @@ export default function Newsletter() {
                     required
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your Email"
-                    className="flex-1 rounded-md border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400"
+                    className="h-11 w-full rounded-md border border-slate-300 px-4 focus:outline-none focus:ring-2 focus:ring-slate-400"
                 />
+
                 <button
                     type="submit"
-                    className="rounded-md bg-slate-900 text-white px-5 py-2 font-medium hover:bg-slate-800"
+                    className="h-11 w-full rounded-md bg-slate-900 px-5 font-medium text-white hover:bg-slate-800 sm:col-span-2 sm:w-fit sm:justify-self-end"
                 >
                     Subscribe
                 </button>

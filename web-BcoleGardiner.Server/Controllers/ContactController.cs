@@ -7,16 +7,10 @@ namespace web_bcolegardiner.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ContactController : ControllerBase
+public class ContactController(IEmailSender email, IRateLimiter limiter) : ControllerBase
 {
-    private readonly IEmailSender _email;
-    private readonly IRateLimiter _limiter;
-
-    public ContactController(IEmailSender email, IRateLimiter limiter)
-    {
-        _email = email;
-        _limiter = limiter;
-    }
+    private readonly IEmailSender _email = email;
+    private readonly IRateLimiter _limiter = limiter;
 
     public record ContactDto(string? Name, string Email, string Message, string? Hp = null);
 

@@ -7,16 +7,33 @@ using web_BcoleGardiner.Server.Models;
 public class NewsletterController : ControllerBase
 {
     [HttpPost]
+    [HttpPost]
     public IActionResult Subscribe([FromBody] SubscribeDto dto, [FromServices] INewsletterStore store)
     {
-        if (string.IsNullOrWhiteSpace(dto.Email))
+        var email = (dto.Email ?? "").Trim().ToLowerInvariant();
+        var name = (dto.Name ?? "").Trim();
+
+        if (string.IsNullOrWhiteSpace(email))
             return BadRequest(new { message = "Email is required." });
 
-        if (store.Exists(dto.Email))
-            return Ok(new { message = "You’re already subscribed." });
+        try
+        {
+            if (store.Exists(email))
+                return Ok(new { message = "You’re already subscribed." });
 
-        store.Add(sub: new NewsletterSubscription { Email = dto.Email, Name = string.IsNullOrWhiteSpace(dto.Name) ? dto.Email : dto.Name.Trim() });
-        return Ok(new { message = "Subscription successful!" });
+            store.Add(new NewsletterSubscription
+            {
+                Email = email,
+                Name = string.IsNullOrWhiteSpace(name) ? email : name
+            });
+
+            return Ok(new { message = "Subscription successful!" });
+        }
+        catch (Exception ex)
+        {
+            // This is gold while debugging locally
+            return StatusCode(500, new { message = ex.Message });
+        }
     }
 
     public class SubscribeDto

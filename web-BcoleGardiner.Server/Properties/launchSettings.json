@@ -6,7 +6,8 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+        "NEWSLETTER_SHEETS_URL": "https://script.google.com/macros/s/AKfycbxH91uwRhLwAJ4c6hNYzPQyqzODqy1ZHdshOcL9Urhlp8bc8Bd-jO5uHcRvPxIIWDUFCg/exec"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5055"
@@ -17,7 +18,8 @@
       "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+        "NEWSLETTER_SHEETS_URL": "https://script.google.com/macros/s/AKfycbxH91uwRhLwAJ4c6hNYzPQyqzODqy1ZHdshOcL9Urhlp8bc8Bd-jO5uHcRvPxIIWDUFCg/exec"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7027;http://localhost:5055"
@@ -28,7 +30,8 @@
       "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+        "NEWSLETTER_SHEETS_URL": "https://script.google.com/macros/s/AKfycbxH91uwRhLwAJ4c6hNYzPQyqzODqy1ZHdshOcL9Urhlp8bc8Bd-jO5uHcRvPxIIWDUFCg/exec"
       }
     },
     "Container (Dockerfile)": {

@@ -5,12 +5,11 @@ using MimeKit;
 using Microsoft.Extensions.Options;
 using web_bcolegardiner.server.Services;
 
-namespace WebBcoleGardiner.Server.Services;
+namespace web_BcoleGardiner.Server.Services;
 
-public class SmtpEmailSender : IEmailSender
+public class SmtpEmailSender(IOptions<EmailOptions> opt) : IEmailSender
 {
-    private readonly EmailOptions _opt;
-    public SmtpEmailSender(IOptions<EmailOptions> opt) => _opt = opt.Value;
+    private readonly EmailOptions _opt = opt.Value;
 
     public async Task SendAsync(string subject, string htmlBody, string? replyTo = null, CancellationToken ct = default)
     {

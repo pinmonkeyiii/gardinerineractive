@@ -43,7 +43,12 @@ export default function Contact() {
                 <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" required />
                 <input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" required />
                 <textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" rows="5" required />
-                <button type="submit" className="bg-primary text-white px-4 py-2 rounded hover:bg-accent">Send Message</button>
+                <button
+                    type="submit"
+                    className="h-11 w-full rounded-md bg-slate-900 px-5 font-medium text-white hover:bg-slate-800 sm:col-span-2 sm:w-fit sm:justify-self-end"
+                >
+                    Send Message
+                </button>
             </form>
             {status && <p className="mt-4 text-gray-700">{status}</p>}
         </section>
