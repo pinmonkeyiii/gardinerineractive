@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
             .SetIsOriginAllowed(origin =>
             {
                 if (string.IsNullOrWhiteSpace(origin)) return false;
-                if (origin == "https://gardinerinteractive.com") return true;
+                if (origin == "https://gardinerinteracive.com") return true;
 
                 // allow any netlify subdomain
                 return origin.EndsWith(".netlify.app", StringComparison.OrdinalIgnoreCase);
