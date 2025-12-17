@@ -24,7 +24,10 @@ public class SmtpEmailSender(IOptions<EmailOptions> opt) : IEmailSender
         msg.Body = new BodyBuilder { HtmlBody = htmlBody }.ToMessageBody();
 
         using var client = new SmtpClient();
-        var secure = _opt.Smtp.UseStartTls ? SecureSocketOptions.StartTls : SecureSocketOptions.Auto;
+        client.Timeout = 10000;
+        //var secure = _opt.Smtp.UseStartTls ? SecureSocketOptions.StartTls : SecureSocketOptions.Auto;
+        var secure = _opt.Smtp.UseStartTls ? SecureSocketOptions.StartTls : SecureSocketOptions.SslOnConnect;
+
         await client.ConnectAsync(_opt.Smtp.Host, _opt.Smtp.Port, secure, ct);
         await client.AuthenticateAsync(_opt.Smtp.User, _opt.Smtp.Password, ct);
         await client.SendAsync(msg, ct);

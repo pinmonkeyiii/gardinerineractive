@@ -17,37 +17,49 @@ public class ContactController(IEmailSender email, IRateLimiter limiter) : Contr
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] ContactDto dto, CancellationToken ct)
     {
-        // ✅ Honeypot (bots often fill hidden fields). Quietly accept but do nothing.
         if (!string.IsNullOrWhiteSpace(dto.Hp))
             return Ok(new { message = "Thanks! Your message has been sent." });
 
         if (string.IsNullOrWhiteSpace(dto.Email) || string.IsNullOrWhiteSpace(dto.Message))
             return BadRequest(new { message = "Email and message are required." });
 
-        // Light server-side sanity caps
         if (dto.Email.Length > 320 || dto.Message.Length > 4000)
             return BadRequest(new { message = "Message is too long." });
 
-        // ✅ Per-IP rate limit
         var ip = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault()
                  ?? HttpContext.Connection.RemoteIpAddress?.ToString()
                  ?? "unknown";
 
         var window = TimeSpan.FromMinutes(1);
-        var maxRequests = 1;  // allow 1 request per minute from same IP
+        var maxRequests = 1;
 
         if (await _limiter.ShouldThrottleAsync($"contact:{ip}", window, maxRequests))
             return StatusCode(429, new { message = "You’re sending messages too fast. Please wait a minute and try again." });
 
-        // Build and send the email
         var subject = $"New Contact from {dto.Name ?? "(No name)"}";
         var body = $@"
-                    <p><strong>Name:</strong> {WebUtility.HtmlEncode(dto.Name)}</p>
-                    <p><strong>Email:</strong> {WebUtility.HtmlEncode(dto.Email)}</p>
-                    <p><strong>Message:</strong><br/>{WebUtility.HtmlEncode(dto.Message).Replace("\n", "<br/>")}</p>";
+            <p><strong>Name:</strong> {WebUtility.HtmlEncode(dto.Name)}</p>
+            <p><strong>Email:</strong> {WebUtility.HtmlEncode(dto.Email)}</p>
+            <p><strong>Message:</strong><br/>{WebUtility.HtmlEncode(dto.Message).Replace("\n", "<br/>")}</p>";
 
-        await _email.SendAsync(subject, body, replyTo: dto.Email, ct);
+        try
+        {
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            cts.CancelAfter(TimeSpan.FromSeconds(10)); // prevent hangs -> gateway timeouts
 
-        return Ok(new { message = "Thanks! Your message has been sent." });
+            await _email.SendAsync(subject, body, replyTo: dto.Email, cts.Token);
+
+            return Ok(new { message = "Thanks! Your message has been sent." });
+        }
+        catch (OperationCanceledException)
+        {
+            return StatusCode(504, new { message = "Email service timed out. Please try again." });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return StatusCode(500, new { message = "Email failed to send. Please try again later." });
+            // (Temporarily, if needed) include: detail = ex.Message
+        }
     }
 }
