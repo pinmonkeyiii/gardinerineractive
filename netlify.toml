@@ -5,7 +5,7 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://gardinerinteractive.onrender.com/api/:splat"
+  to = "https://gardinerineractive.onrender.com/api/:splat"
   status = 200
   force = true
 
