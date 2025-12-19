@@ -60,7 +60,7 @@ export default function Newsletter() {
     return (
         <div className="mt-12">
             <h2 className="text-2xl font-bold text-slate-900">Join My Newsletter</h2>
-            <p className="text-slate-600 mt-2 mb-6">
+            <p className="text-slate-700 mt-2 mb-6">
                 Get updates on upcoming books, writing insights, and more.
             </p>
 

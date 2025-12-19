@@ -100,7 +100,7 @@ export default function Portfolio() {
                             <h3 className="text-xl font-semibold mb-2 text-slate-800">
                                 {proj.title}
                             </h3>
-                            <p className="text-slate-600 mb-3">{proj.description}</p>
+                            <p className="text-slate-700 mb-3">{proj.description}</p>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {proj.tech.map((t, i) => (
                                     <span

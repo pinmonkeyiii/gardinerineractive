@@ -12,13 +12,16 @@ export default function Home() {
                         src={siteIcon}
                         alt="Gardiner Interactive"
                         className="h-48 w-48 rounded-full object-cover shadow-sm"
+                        width="192"
+                        height="192"
+                        fetchpriority="high"
                     />
 
                     <h2 className="mt-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                         Crafting Code by Day, Worlds by Night.
                     </h2>
 
-                    <p className="mt-4 max-w-2xl text-base text-slate-600 sm:text-lg">
+                    <p className="mt-4 max-w-2xl text-base text-slate-700 sm:text-lg">
                         Software Development Manager & Aspiring Author of YA Fiction and Horror
                     </p>
 
