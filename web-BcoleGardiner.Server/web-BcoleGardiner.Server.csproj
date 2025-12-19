@@ -39,9 +39,7 @@
 
     <MakeDir Directories="$(PublishDir)wwwroot" />
 
-    <Copy
-      SourceFiles="@(ClientDist)"
-      DestinationFiles="@(ClientDist->'$(PublishDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ClientDist)" DestinationFiles="@(ClientDist->'$(PublishDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
   
   <ItemGroup>
@@ -51,6 +49,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="SendGrid" Version="9.29.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <!--

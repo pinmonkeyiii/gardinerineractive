@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Spinner from "../components/Spinner";
 
 export default function Contact() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({ name: "", email: "", message: "", hp: "" });
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState(null); // { type: "success" | "error", text: string }
+    const [showStatus, setShowStatus] = useState(false);
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -10,19 +14,58 @@ export default function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isSubmitting) return;
+
+        setIsSubmitting(true);
+        setStatus(null);
+
         try {
             const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
-            const result = await response.json();
-            setStatus(result.message);
-            setFormData({ name: "", email: "", message: "" });
+
+            // Don’t assume JSON (prevents "Unexpected end of JSON input")
+            const text = await response.text();
+            let result = {};
+            try { result = text ? JSON.parse(text) : {}; } catch { /* empty */ }
+
+            if (!response.ok) {
+                throw new Error(result.message || `Request failed (${response.status})`);
+            }
+
+            setStatus({ type: "success", text: result.message || "Thanks! Your message has been sent." });
+            setFormData({ name: "", email: "", message: "", hp: "" });
         } catch (error) {
-            setStatus("Error submitting form. Please try again.   " + error);
+            setStatus({ type: "error", text: `Error submitting form. Please try again. ${error.message || error}` });
+        } finally {
+            setIsSubmitting(false);
         }
     };
+
+    const hideTimerRef = useRef(null);
+
+    useEffect(() => {
+        if (!status) return;
+
+        setShowStatus(true);
+
+        // clear existing timer
+        if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+
+        // hide after 4 seconds (adjust as you like)
+        hideTimerRef.current = setTimeout(() => {
+            setShowStatus(false);
+
+            // after fade-out finishes, clear the message
+            setTimeout(() => setStatus(null), 300);
+        }, 4000);
+
+        return () => {
+            if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+        };
+    }, [status]);
 
     return (
         <section className="max-w-lg mx-auto py-12 px-4">
@@ -40,17 +83,48 @@ export default function Contact() {
                         onChange={(e) => setFormData({ ...formData, hp: e.target.value })}
                     />
                 </div>
-                <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" required />
-                <input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" required />
-                <textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" rows="5" required />
+                <input type="text" disabled={isSubmitting} name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" required />
+                <input type="email" disabled={isSubmitting} name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" required />
+                <textarea name="message" disabled={isSubmitting} placeholder="Your Message" value={formData.message} onChange={handleChange} className="w-full border border-gray-300 rounded p-2" rows="5" required />
                 <button
                     type="submit"
-                    className="h-11 w-full rounded-md bg-slate-900 px-5 font-medium text-white hover:bg-slate-800 sm:col-span-2 sm:w-fit sm:justify-self-end"
+                    disabled={isSubmitting}
+                    className="
+                                h-11
+                                w-full
+                                inline-flex items-center justify-center gap-2
+                                rounded-md bg-slate-900 px-5
+                                font-medium text-white
+                                hover:bg-slate-800
+                                disabled:opacity-60 disabled:cursor-not-allowed
+                                sm:col-span-2 sm:w-fit sm:justify-self-end
+                              "
                 >
-                    Send Message
+                    {isSubmitting ? (
+                        <>
+                            <Spinner size={16} />
+                            <span className="leading-none">
+                                {"Sending" + "\u2026"}
+                            </span>
+                        </>
+                    ) : (
+                        "Send Message"
+                    )}
                 </button>
             </form>
-            {status && <p className="mt-4 text-gray-700">{status}</p>}
+            {status && (
+                <p
+                    className={[
+                        "mt-4 text-sm transition-opacity duration-300",
+                        showStatus ? "opacity-100" : "opacity-0",
+                        status.type === "success" ? "text-emerald-700" : "text-red-700",
+                    ].join(" ")}
+                    role="status"
+                    aria-live="polite"
+                >
+                    {status.text}
+                </p>
+            )}
         </section>
     );
 }

@@ -38,8 +38,12 @@ builder.Services.AddSingleton<INewsletterStore, GoogleSheetsNewsletterStore>();
 // Contact Email
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<IRateLimiter, InMemoryRateLimiter>();
+/* These lines will use BREVO as an SMP host to send emails, which doesn't always work on 'free' hosts - BCG
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
+*/
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IEmailSender, BrevoApiEmailSender>();
 
 var app = builder.Build();
 

@@ -58,8 +58,11 @@ public class ContactController(IEmailSender email, IRateLimiter limiter) : Contr
         catch (Exception ex)
         {
             Console.WriteLine(ex);
+
+            if (HttpContext.RequestServices.GetRequiredService<IHostEnvironment>().IsDevelopment())
+                return StatusCode(500, new { message = ex.Message });
+
             return StatusCode(500, new { message = "Email failed to send. Please try again later." });
-            // (Temporarily, if needed) include: detail = ex.Message
         }
     }
 }

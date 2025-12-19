@@ -8,7 +8,7 @@ export default function Portfolio() {
                 "Debut novel blending spellcraft with circuitry, memory with identity, and ancient secrets with futuristic threats.",
         },
         {
-            title: "High Spirits",
+            title: "The Ship That Eats Secrets",
             description:
                 "A YA horror mystery aboard a cursed cruise ship where truth is archived and illusions reign.",
         },
@@ -17,35 +17,55 @@ export default function Portfolio() {
             description:
                 "A whimsical YA fantasy about memory, consent, and resistance against industrial exploitation.",
         },
+        {
+            title: "Threads of Elseron: The Rise of the Shadow Circuit – The Memory War",
+            description:
+                "Follw-up to my debut novel, continuing forward with the Memory war.",
+        },
     ];
 
     const projects = [
         {
-            title: "Project Atlas",
+            title: "Gembalink UI & GembaLink Realtime and Historical Cube(s)",
             description:
-                "A full-stack web platform built with ASP.NET Core and React, providing real-time collaboration and document sharing.",
-            tech: ["C#", ".NET 8", "React", "SignalR", "SQL Server"],
-            link: "https://github.com/yourusername/project-atlas",
+                "A full stack web platform used to track machine OEE (Overall Equipment Effectiveness), using machine data to show at the machine what the stats for the machine are." +
+                "As well as a Tabular Cube based on this data, to allow the higher ups in the company to make decisions",
+            tech: ["C#", ".NET 8", "React", "SQL Server", "SSIS", "SSAS"],
         },
         {
-            title: "Lifetime KPI Dashboard",
+            title: "Executive Dashboard",
             description:
-                "An internal dashboard aggregating data from multiple systems to visualize manufacturing KPIs across facilities.",
-            tech: ["C#", "Blazor", "Entity Framework Core", "Power BI Embedded"],
+                "An SSRS report, used to show the Executives running Lifetime to see all actionable data that will allow them to make the decisions they need to make to keep the company running.",
+            tech: ["SQL", "SSSRS"],
         },
         {
-            title: "AI Resume Screener",
+            title: "Machine Tag Alerting (MTA)",
             description:
-                "An intelligent resume parsing tool that uses OpenAI embeddings and semantic search to match applicants to jobs.",
+                "This project can use machine data, as well as other data, to set alerts that can be sent when conditions meet given criteria, " +
+                "in an attempt to determine trends to combat downtime and quality issues",
             tech: ["Python", "FastAPI", "OpenAI API", "React"],
-            link: "https://github.com/yourusername/ai-resume-screener",
+        },
+        {
+            title: "Gardiner Interactive Website",
+            description:
+                "This project allows me to keep up-to-date with some of the newer technologies that I am not using at work at the moment." +
+                "It also allows me to showcase all that I am working on at the moment, and in the past and future.",
+            tech: [".net 9.0", "React", "Tailwinds", "Web-hosting", "email set up", "blogging", "Newsletter"],
+            link: "https://github.com/pinmonkeyiii/gardinerineractive",
+        },
+        {
+            title: "Gardiner Interactive - Mobile Game: Lettris",
+            description:
+                "Creating a game initially in Python (giving me experience in Python), that I will then convert over to a Maui app that I can use to create an Apple as well as Android " +
+                "deployable app, and a desktop app if so desired. ",
+            tech: ["Python", "Maui", "Java", "Objective C", "Swift", "C#"],
         },
     ];
 
     const skills = {
-        languages: ["C#", "JavaScript", "Python", "SQL", "HTML", "CSS"],
+        languages: ["C#", "JavaScript", "Python", "SQL", "HTML", "CSS", "Python"],
         frameworks: [
-            "ASP.NET Core",
+            "ASP.NET/Core",
             "React",
             "Tailwind CSS",
             "Blazor",
@@ -60,7 +80,7 @@ export default function Portfolio() {
             "Power BI",
             "Docker",
         ],
-        cloud: ["Azure", "AWS (basic)", "Vercel"],
+        cloud: ["Azure", "AWS (basic)" ],
     };
 
 
@@ -115,7 +135,6 @@ export default function Portfolio() {
                     </div>
                 ))}
             </div>
-            {/* 🧠 Skills & Tools */}
             <h2 className="text-3xl font-bold mb-8 text-slate-900">
                 Skills & Tools
             </h2>

@@ -1,8 +1,14 @@
 import React from "react";
+import authorPhoto from "/public/author-photo.png";
 
 export default function About() {
     return (
         <section className="max-w-3xl mx-auto py-12 px-4">
+            <img
+                src={authorPhoto}
+                alt="Author"
+                className="h-48 w-48 rounded-full object-cover shadow-sm"
+            />
             <h2 className="text-2xl font-bold mb-4">About B. Cole Gardiner</h2>
             <p className="mb-4">
                 B. Cole Gardiner is a software development manager by day and a storyteller by night. Based in Clearfield, Utah, he lives with his vibrant and ever-growing household of children, pets, and the ever-present family member or friend. His love for fantasy, mystery, and technology fuels his writing, where he explores the intersection of magic and modernity.

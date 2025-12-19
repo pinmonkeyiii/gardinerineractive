@@ -19,7 +19,7 @@ public class NewsletterController : ControllerBase
         try
         {
             if (store.Exists(email))
-                return Ok(new { message = "You’re already subscribed." });
+                return Ok(new { message = "Email address is already subscribed." });
 
             store.Add(new NewsletterSubscription
             {
