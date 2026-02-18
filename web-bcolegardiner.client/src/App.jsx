@@ -6,6 +6,7 @@ import About from "./components/About";
 import Portfolio from "./components/Portfolio";
 import Blog from "./components/Blog";
 import Contact from "./components/Contact";
+import Privacy from "./components/Privacy";
 
 function App() {
     return (
@@ -19,6 +20,8 @@ function App() {
                         <Route path="/portfolio" element={<Portfolio />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/privacy" element={<Privacy />} /> 
+                        <Route path="/lettriis/privacy" element={<Privacy />} />"
                     </Routes>
                 </main>
                 <Footer />

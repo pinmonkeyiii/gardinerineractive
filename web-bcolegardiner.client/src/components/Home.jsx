@@ -14,7 +14,7 @@ export default function Home() {
                         className="h-48 w-48 rounded-full object-cover shadow-sm"
                         width="192"
                         height="192"
-                        fetchpriority="high"
+                        fetchPriority="high"
                     />
 
                     <h2 className="mt-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
