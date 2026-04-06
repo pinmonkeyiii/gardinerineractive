@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -8,6 +8,7 @@ export default function Footer() {
             <a href="/privacy" className="underline hover:opacity-90">
                 Privacy Policy
             </a>
+            <NavLink to="/lettriis/preregister" className={({ isActive }) => (isActive ? linkActive : linkBase)}>Lettriis</NavLink>
         </footer>
     );
 }
