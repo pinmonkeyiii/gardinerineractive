@@ -23,6 +23,7 @@ function App() {
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/privacy" element={<Privacy />} /> 
                         <Route path="/lettriis/privacy" element={<Privacy />} />
+                        <Route path="/lettriis" element={<LettriisPreregister />} />
                         <Route path="/lettriis/preregister" element={<LettriisPreregister />} />
                     </Routes>
                 </main>
