@@ -3,6 +3,7 @@ import PageContainer from "./PageContainer";
 
 const googlePlayUrl =
     "https://play.google.com/store/apps/details?id=com.gardinerinteractive.lettriis&utm_source=website&utm_campaign=launch";
+const windowsDownloadUrl = "/downloads/Lettriis-Windows.zip";
 
 function DownloadButton({ children = "Download on Google Play", className = "" }) {
     return (
@@ -12,6 +13,19 @@ function DownloadButton({ children = "Download on Google Play", className = "" }
             rel="noopener noreferrer"
             className={`inline-flex w-full items-center justify-center rounded-2xl bg-emerald-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-emerald-600/20 transition hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-emerald-300 sm:w-auto ${className}`}
             aria-label="Download Lettriis on Google Play"
+        >
+            {children}
+        </a>
+    );
+}
+
+function WindowsDownloadButton({ children = "Download for Windows", className = "" }) {
+    return (
+        <a
+            href={windowsDownloadUrl}
+            download
+            className={`inline-flex w-full items-center justify-center rounded-2xl bg-slate-100 px-6 py-4 text-base font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-white hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-slate-300 sm:w-auto ${className}`}
+            aria-label="Download Lettriis for Windows"
         >
             {children}
         </a>
@@ -54,6 +68,14 @@ export default function LettriisPreregister() {
 
                             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                                 <DownloadButton>Download Free on Google Play</DownloadButton>
+                                <a
+                                    href="https://github.com/pinmonkeyiii/gardinerineractive/releases/latest/download/Lettriis-Windows.zip"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex w-full items-center justify-center rounded-2xl bg-slate-100 px-6 py-4 text-base font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-white hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-slate-300 sm:w-auto"
+                                >
+                                    Download for Windows
+                                </a>
                                 <a
                                     href="#how-it-plays"
                                     className="inline-flex w-full items-center justify-center rounded-2xl border border-white/20 px-6 py-4 text-base font-bold text-white transition hover:bg-white/10 sm:w-auto"
@@ -124,6 +146,16 @@ export default function LettriisPreregister() {
                     <div className="mt-7">
                         <DownloadButton>Play Lettriis Now</DownloadButton>
                     </div>
+                    <div className="mt-7">
+                        <a
+                            href="https://github.com/pinmonkeyiii/gardinerineractive/releases/latest/download/Lettriis-Windows.zip"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex w-full items-center justify-center rounded-2xl bg-slate-100 px-6 py-4 text-base font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-white hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-slate-300 sm:w-auto"
+                        >
+                            Download for Windows
+                        </a>
+                    </div>
                 </section>
 
                 <section className="grid gap-6 py-12 lg:grid-cols-[0.8fr_1.2fr]">
@@ -155,6 +187,14 @@ export default function LettriisPreregister() {
                             </p>
                         </div>
                         <DownloadButton className="shadow-none">Get it on Google Play</DownloadButton>
+                        <a
+                            href="https://github.com/pinmonkeyiii/gardinerineractive/releases/latest/download/Lettriis-Windows.zip"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex w-full items-center justify-center rounded-2xl bg-slate-100 px-6 py-4 text-base font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-white hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-slate-300 sm:w-auto"
+                        >
+                            Download for Windows
+                        </a>
                     </div>
                 </section>
 
