@@ -19,6 +19,7 @@ export default function Header() {
                     <NavLink to="/" end className={({ isActive }) => (isActive ? linkActive : linkBase)}>Home</NavLink>
                     <NavLink to="/about" className={({ isActive }) => (isActive ? linkActive : linkBase)}>About</NavLink>
                     <NavLink to="/portfolio" className={({ isActive }) => (isActive ? linkActive : linkBase)}>Portfolio</NavLink>
+                    <NavLink to="/heart-of-the-loom" className={({ isActive }) => (isActive ? linkActive : linkBase)}>Books</NavLink>
                     <NavLink to="/blog" className={({ isActive }) => (isActive ? linkActive : linkBase)}>Blog</NavLink>
                     <NavLink to="/contact" className={({ isActive }) => (isActive ? linkActive : linkBase)}>Contact</NavLink>
                 </nav>

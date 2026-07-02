@@ -8,6 +8,7 @@ import Blog from "./components/Blog";
 import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
 import LettriisPreregister from "./components/LettriisPreregister";
+import HeartOfTheLoom from "./components/HeartOfTheLoom";
 
 function App() {
     return (
@@ -25,6 +26,8 @@ function App() {
                         <Route path="/lettriis/privacy" element={<Privacy />} />
                         <Route path="/lettriis" element={<LettriisPreregister />} />
                         <Route path="/lettriis/preregister" element={<LettriisPreregister />} />
+                        <Route path="/heart-of-the-loom" element={<HeartOfTheLoom />} />
+                        <Route path="/books/heart-of-the-loom" element={<HeartOfTheLoom />} />
                     </Routes>
                 </main>
                 <Footer />

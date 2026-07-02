@@ -3,7 +3,7 @@ import React from "react";
 export default function Portfolio() {
     const books = [
         {
-            title: "Threads of Elseron: The Heart of the Loom – The Shadow Code Rises",
+            title: "Threads of Elseron: The Heart of the Loom - The Shadow Circuit Rises",
             description:
                 "Debut novel blending spellcraft with circuitry, memory with identity, and ancient secrets with futuristic threats.",
         },
@@ -20,7 +20,7 @@ export default function Portfolio() {
         {
             title: "Threads of Elseron: The Rise of the Shadow Circuit – The Memory War",
             description:
-                "Follw-up to my debut novel, continuing forward with the Memory war.",
+                "Follow-up to my debut novel, continuing forward with the Memory War.",
         },
     ];
 
@@ -132,6 +132,14 @@ export default function Portfolio() {
                     <div key={index} className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition">
                         <h3 className="text-lg font-semibold mb-2">{book.title}</h3>
                         <p className="text-gray-700">{book.description}</p>
+                        {index === 0 && (
+                            <a
+                                href="/heart-of-the-loom"
+                                className="mt-4 inline-flex text-primary hover:text-accent font-medium"
+                            >
+                                View book page →
+                            </a>
+                        )}
                     </div>
                 ))}
             </div>
