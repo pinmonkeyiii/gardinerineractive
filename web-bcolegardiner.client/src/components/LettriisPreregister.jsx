@@ -1,5 +1,6 @@
 import React from "react";
 import PageContainer from "./PageContainer";
+import Seo from "./Seo";
 
 const googlePlayUrl =
     "https://play.google.com/store/apps/details?id=com.gardinerinteractive.lettriis&utm_source=website&utm_campaign=launch";
@@ -45,8 +46,35 @@ function SectionCard({ icon, title, children }) {
 }
 
 export default function LettriisPreregister() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        name: "Lettriis",
+        description: "A fast word puzzle game that combines falling-block strategy with vocabulary gameplay, helpers, levels, and satisfying word clears.",
+        genre: ["Word game", "Puzzle game", "Arcade game"],
+        gamePlatform: ["Android", "Windows"],
+        operatingSystem: ["Android", "Windows"],
+        applicationCategory: "GameApplication",
+        author: { "@type": "Person", name: "B. Cole Gardiner" },
+        publisher: { "@type": "Organization", name: "Gardiner Interactive" },
+        url: "https://gardinerinteractive.com/lettriis",
+        offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+        },
+    };
+
     return (
-        <PageContainer className="px-0 sm:px-6 lg:px-8">
+        <>
+            <Seo
+                title="Lettriis Falling-Block Word Puzzle Game"
+                description="Play Lettriis, a free word puzzle game combining falling-block strategy, vocabulary, helpers, quizzes, and fast arcade-style progression. Available now on Android."
+                path="/lettriis"
+                jsonLd={jsonLd}
+            />
+            <PageContainer className="px-0 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-6xl overflow-hidden py-8 sm:py-12">
                 <section className="relative overflow-hidden rounded-[2rem] bg-slate-950 px-6 py-12 text-white shadow-2xl sm:px-10 lg:px-14 lg:py-16">
                     <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-500/20 blur-3xl" />
@@ -204,6 +232,7 @@ export default function LettriisPreregister() {
                     </p>
                 </section>
             </div>
-        </PageContainer>
+            </PageContainer>
+        </>
     );
 }
