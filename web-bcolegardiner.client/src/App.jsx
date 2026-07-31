@@ -9,6 +9,8 @@ import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
 import LettriisPreregister from "./components/LettriisPreregister";
 import HeartOfTheLoom from "./components/HeartOfTheLoom";
+import Lexoria from "./components/Lexoria";
+import ShipThatEatsSecrets from "./components/ShipThatEatsSecrets";
 
 function App() {
     return (
@@ -28,6 +30,10 @@ function App() {
                         <Route path="/lettriis/preregister" element={<LettriisPreregister />} />
                         <Route path="/heart-of-the-loom" element={<HeartOfTheLoom />} />
                         <Route path="/books/heart-of-the-loom" element={<HeartOfTheLoom />} />
+                        <Route path="/lexoria" element={<Lexoria />} />
+                        <Route path="/games/lexoria" element={<Lexoria />} />
+                        <Route path="/the-ship-that-eats-secrets" element={<ShipThatEatsSecrets />} />
+                        <Route path="/books/the-ship-that-eats-secrets" element={<ShipThatEatsSecrets />} />
                     </Routes>
                 </main>
                 <Footer />
