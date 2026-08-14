@@ -11,6 +11,7 @@ import LettriisPreregister from "./components/LettriisPreregister";
 import HeartOfTheLoom from "./components/HeartOfTheLoom";
 import Lexoria from "./components/Lexoria";
 import ShipThatEatsSecrets from "./components/ShipThatEatsSecrets";
+import FantasyInfluenceBooksArticle from "./components/FantasyInfluenceBooksArticle";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/about" element={<About />} />
                         <Route path="/portfolio" element={<Portfolio />} />
                         <Route path="/blog" element={<Blog />} />
+                        <Route path="/blog/books-that-shaped-me-as-a-fantasy-author" element={<FantasyInfluenceBooksArticle />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/privacy" element={<Privacy />} /> 
                         <Route path="/lettriis/privacy" element={<Privacy />} />
