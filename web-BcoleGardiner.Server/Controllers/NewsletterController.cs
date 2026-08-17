@@ -7,7 +7,6 @@ using web_BcoleGardiner.Server.Models;
 public class NewsletterController : ControllerBase
 {
     [HttpPost]
-    [HttpPost]
     public IActionResult Subscribe([FromBody] SubscribeDto dto, [FromServices] INewsletterStore store)
     {
         var email = (dto.Email ?? "").Trim().ToLowerInvariant();

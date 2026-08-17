@@ -1,4 +1,4 @@
-﻿using LiteDB;
+﻿//using LiteDB;
 using web_bcolegardiner.server.Services;
 using web_BcoleGardiner.Server.Services;
 
@@ -14,19 +14,29 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .SetIsOriginAllowed(origin =>
             {
-                if (string.IsNullOrWhiteSpace(origin)) return false;
-                if (origin == "https://gardinerinteracive.com") return true;
+                if (string.IsNullOrWhiteSpace(origin))
+                    return false;
 
-                // allow any netlify subdomain
-                return origin.EndsWith(".netlify.app", StringComparison.OrdinalIgnoreCase);
+                if (origin == "https://gardinerinteractive.onrender.com" ||
+                    origin == "https://gardinerinteractive.com" ||
+                    origin == "https://www.gardinerinteractive.com")
+                {
+                    return true;
+                }
+
+                // Allow any Netlify subdomain
+                return origin.EndsWith(
+                    ".netlify.app",
+                    StringComparison.OrdinalIgnoreCase);
             })
     );
 });
 
-// LiteDB single instance (thread-safe inside one process)
+/* LiteDB single instance (thread-safe inside one process) 
 var dataDir = Path.Combine(builder.Environment.ContentRootPath, "App_Data");
 Directory.CreateDirectory(dataDir);
 var dbPath = Path.Combine(dataDir, "newsletter.db");
+*/
 
 // Store service
 /* This 2 lines will add a Store to a LiteDB, but that doesn't work on free Render services, so I am using a Google SHeet instead - bcg */
@@ -42,7 +52,6 @@ builder.Services.AddSingleton<IRateLimiter, InMemoryRateLimiter>();
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 */
-builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IEmailSender, BrevoApiEmailSender>();
 
 var app = builder.Build();
@@ -73,6 +82,10 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
+    // Unknown API routes should be 404, not React's index.html.
+    app.MapFallback("/api/{**path}", () => Results.NotFound());
+
+    // Everything else may be a React client-side route.
     app.MapFallbackToFile("index.html");
 }
 
