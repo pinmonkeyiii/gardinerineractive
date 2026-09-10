@@ -9,6 +9,23 @@ export default function Footer() {
             <Link to="/privacy" className="mt-2 inline-block underline hover:opacity-90">
                 Privacy Policy
             </Link>
+            <p className="mt-2 text-sm">
+                General:{" "}
+                <a
+                    href="mailto:pinmonkeyiii@gmail.com"
+                    className="underline hover:opacity-90"
+                >
+                    pinmonkeyiii@gmail.com
+                </a>
+                <br />
+                Support:{" "}
+                <a
+                    href="mailto:brandon@gardinerinteractive.com"
+                    className="underline hover:opacity-90"
+                >
+                    brandon@gardinerinteractive.com
+                </a>
+            </p>
         </footer>
     );
 }
