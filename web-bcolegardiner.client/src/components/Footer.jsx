@@ -10,7 +10,7 @@ export default function Footer() {
                 Privacy Policy
             </Link>
             <p className="mt-2 text-sm">
-                General:{" "}
+                Author:{" "}
                 <a
                     href="mailto:pinmonkeyiii@gmail.com"
                     className="underline hover:opacity-90"
@@ -18,7 +18,7 @@ export default function Footer() {
                     pinmonkeyiii@gmail.com
                 </a>
                 <br />
-                Support:{" "}
+                Gardiner Interactive:{" "}
                 <a
                     href="mailto:brandon@gardinerinteractive.com"
                     className="underline hover:opacity-90"
