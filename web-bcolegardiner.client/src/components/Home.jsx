@@ -10,7 +10,7 @@ export default function Home() {
         <>
             <Seo
                 title="Author and Indie Game Developer"
-                description="Official site of B. Cole Gardiner, author of The Heart of the Loom and The Ship That Eats Secrets, and creator of the word games Lettriis and Lexoria."
+                description="Official site of B. Cole Gardiner and Gardiner Interactive, creator of Naughty List, Lettriis, Lexoria, The Heart of the Loom, and The Ship That Eats Secrets."
                 path="/"
             />
             <section className="px-4 py-12 sm:py-16">
@@ -29,10 +29,24 @@ export default function Home() {
                         <div className="text-center">
                             <p className="text-sm font-bold uppercase tracking-[0.25em] text-emerald-700">Gardiner Interactive Games</p>
                             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Words are only the beginning.</h2>
-                            <p className="mx-auto mt-3 max-w-2xl text-slate-700">Play the released falling-block word game Lettriis, or help shape the dungeon-crawling word roguelite Lexoria.</p>
+                            <p className="mx-auto mt-3 max-w-2xl text-slate-700">Investigate Evergreen in Naughty List, play the released falling-block word game Lettriis, or help shape the dungeon-crawling word roguelite Lexoria.</p>
                         </div>
 
                         <div className="mt-8 grid gap-6 lg:grid-cols-2">
+                            <article className="overflow-hidden rounded-2xl border border-red-200 bg-red-50 shadow-sm lg:col-span-2 lg:grid lg:grid-cols-[1.05fr_.95fr]">
+                                <img src="/press/naughty-list/NaughtyList_KeyArt_Gameplay.png" alt="Naughty List promotional key art" className="h-full min-h-72 w-full object-cover" width="1672" height="941" loading="lazy" />
+                                <div className="p-6 sm:p-8">
+                                    <p className="text-sm font-semibold uppercase tracking-wide text-red-700">In active development · Kickstarter pre-launch</p>
+                                    <h3 className="mt-2 text-3xl font-bold">Naughty List</h3>
+                                    <p className="mt-2 text-lg font-semibold text-slate-900">A Christmas detective game where you actually have to investigate.</p>
+                                    <p className="mt-3 text-slate-700">Explore Evergreen, question residents, physically uncover evidence, gain access to restricted locations, and decide what the facts support without a glowing arrow solving the case for you.</p>
+                                    <div className="mt-5 flex flex-wrap gap-4">
+                                        <Link to="/naughty-list" className="font-bold text-red-800 hover:text-red-600">Investigate Naughty List →</Link>
+                                        <a href="https://www.kickstarter.com/projects/gardinerinteractive/naughty-list" target="_blank" rel="noopener noreferrer" className="font-bold text-slate-700 hover:text-slate-950">Follow on Kickstarter ↗</a>
+                                    </div>
+                                </div>
+                            </article>
+
                             <article className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm">
                                 <div className="flex h-72 items-center justify-center rounded-xl bg-slate-950 px-6 text-center text-white">
                                     <div>

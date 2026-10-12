@@ -12,6 +12,8 @@ import HeartOfTheLoom from "./components/HeartOfTheLoom";
 import Lexoria from "./components/Lexoria";
 import ShipThatEatsSecrets from "./components/ShipThatEatsSecrets";
 import FantasyInfluenceBooksArticle from "./components/FantasyInfluenceBooksArticle";
+import NaughtyList from "./components/NaughtyList";
+import NaughtyListPress from "./components/NaughtyListPress";
 
 function App() {
     return (
@@ -34,6 +36,9 @@ function App() {
                         <Route path="/books/heart-of-the-loom" element={<HeartOfTheLoom />} />
                         <Route path="/lexoria" element={<Lexoria />} />
                         <Route path="/games/lexoria" element={<Lexoria />} />
+                        <Route path="/naughty-list" element={<NaughtyList />} />
+                        <Route path="/games/naughty-list" element={<NaughtyList />} />
+                        <Route path="/naughty-list/press" element={<NaughtyListPress />} />
                         <Route path="/the-ship-that-eats-secrets" element={<ShipThatEatsSecrets />} />
                         <Route path="/books/the-ship-that-eats-secrets" element={<ShipThatEatsSecrets />} />
                     </Routes>
