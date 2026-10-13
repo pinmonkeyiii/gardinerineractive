@@ -59,13 +59,13 @@ export default function NaughtyList() {
                         <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
                             Investigate the residents of Evergreen, uncover evidence, question conflicting stories, gain legitimate access to the places you need to search, and decide what the facts actually support.
                         </p>
-                        <div className="mt-7 flex flex-wrap gap-3">
-                            <a href={kickstarterUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-emerald-500 px-5 py-3 text-sm font-extrabold text-slate-950 hover:bg-emerald-400">
-                                Follow on Kickstarter ↗
+                        <div className="mt-7 flex flex-wrap items-center gap-3">
+                            <a href={kickstarterUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-emerald-500 px-6 py-3.5 text-sm font-extrabold text-slate-950 shadow-lg shadow-emerald-950/20 hover:bg-emerald-400">
+                                Follow Naughty List on Kickstarter ↗
                             </a>
-                            <a href="#gameplay" className="rounded-lg border border-white/25 px-5 py-3 text-sm font-bold text-white hover:bg-white/10">Watch gameplay</a>
-                            <Link to="/naughty-list/press" className="rounded-lg border border-white/25 px-5 py-3 text-sm font-bold text-white hover:bg-white/10">Press kit</Link>
+                            <a href="#gameplay" className="rounded-lg border border-white/25 px-5 py-3 text-sm font-bold text-white hover:bg-white/10">Watch 10+ minutes of gameplay</a>
                         </div>
+                        <p className="mt-3 text-sm text-slate-400">Get notified when the Kickstarter campaign launches. <Link to="/naughty-list/press" className="font-semibold text-slate-300 underline decoration-slate-600 underline-offset-4 hover:text-white">Press kit</Link></p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-400">
                             <span><strong className="text-white">Platforms:</strong> Windows PC, Android</span>
                             <span><strong className="text-white">Status:</strong> In active development</span>
@@ -96,6 +96,12 @@ export default function NaughtyList() {
                                 <p className="mt-2 leading-7 text-slate-700">{feature.text}</p>
                             </article>
                         ))}
+                    </div>
+
+                    <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-emerald-200 bg-emerald-50 p-7 text-center sm:p-8">
+                        <h3 className="text-2xl font-bold text-slate-950">Sound like your kind of mystery?</h3>
+                        <p className="mx-auto mt-3 max-w-2xl leading-7 text-slate-700">Naughty List is currently in development. Follow the Kickstarter pre-launch page and you'll be notified when the campaign begins.</p>
+                        <a href={kickstarterUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-lg bg-emerald-500 px-6 py-3 text-sm font-extrabold text-slate-950 hover:bg-emerald-400">Follow Naughty List on Kickstarter ↗</a>
                     </div>
                 </div>
             </section>
@@ -136,7 +142,7 @@ export default function NaughtyList() {
                 <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-7 text-center shadow-sm sm:p-10">
                     <p className="text-sm font-bold uppercase tracking-[0.25em] text-emerald-700">Follow development</p>
                     <h2 className="mt-3 text-3xl font-bold text-slate-950">Be there when the case opens.</h2>
-                    <p className="mx-auto mt-3 max-w-2xl text-slate-700">Naughty List is currently in active development. Follow the Kickstarter pre-launch page to be notified when the campaign launches.</p>
+                    <p className="mx-auto mt-3 max-w-2xl text-slate-700">Follow Naughty List on Kickstarter to be notified when the campaign launches and help bring Evergreen's investigations to life.</p>
                     <a href={kickstarterUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-lg bg-slate-950 px-6 py-3 text-sm font-extrabold text-white hover:bg-slate-800">Follow Naughty List on Kickstarter ↗</a>
                 </div>
             </section>
