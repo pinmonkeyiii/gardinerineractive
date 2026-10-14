@@ -14,10 +14,12 @@ import ShipThatEatsSecrets from "./components/ShipThatEatsSecrets";
 import FantasyInfluenceBooksArticle from "./components/FantasyInfluenceBooksArticle";
 import NaughtyList from "./components/NaughtyList";
 import NaughtyListPress from "./components/NaughtyListPress";
+import Analytics from "./components/Analytics";
 
 function App() {
     return (
         <Router>
+            <Analytics />
             <div className="flex flex-col min-h-screen bg-gray-50 text-primary">
                 <Header />
                 <main className="flex-grow">
