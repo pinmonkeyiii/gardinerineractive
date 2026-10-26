@@ -52,16 +52,20 @@ export default function NaughtyList() {
             />
 
             <section className="bg-slate-950 text-white">
-                <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+                <div className="mx-auto grid max-w-6xl gap-6 px-4 py-7 sm:gap-10 sm:py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
                     <div>
                         <p className="text-sm font-bold uppercase tracking-[0.28em] text-red-300">Gardiner Interactive presents</p>
-                        <h1 className="mt-4 text-5xl font-black tracking-tight sm:text-6xl">Naughty List</h1>
-                        <p className="mt-3 text-xl font-semibold text-amber-200">A Christmas detective game where the game does not solve the mystery for you.</p>
-                        <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-                            Investigate the residents of Evergreen, uncover evidence, question conflicting stories, gain legitimate access to the places you need to search, and decide what the facts actually support.
+                        <h1 className="mt-2 text-4xl font-black tracking-tight sm:mt-4 sm:text-6xl">Naughty List</h1>
+                        <p className="mt-2 text-lg font-semibold text-amber-200 sm:mt-3 sm:text-xl">Everyone has secrets. You decide who's naughty.</p>
+                        <p className="mt-3 max-w-2xl text-base leading-6 text-slate-300 sm:mt-6 sm:leading-7 sm:text-lg">
+                            Investigate Evergreen, uncover hidden evidence, and question residents. Follow the clues yourself—no quest marker solves the mystery for you.
                         </p>
-                        <div className="mt-7 flex flex-wrap items-center gap-3">
-                            <a href={kickstarterUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackKickstarterClick("hero")} className="rounded-lg bg-emerald-500 px-6 py-3.5 text-sm font-extrabold text-slate-950 shadow-lg shadow-emerald-950/20 hover:bg-emerald-400">
+                        <figure className="mt-4 lg:hidden">
+                            <img src="/press/naughty-list/NaughtyList_KeyArt_Gameplay.png" alt="Naughty List promotional artwork showing a Christmas mystery setting" className="w-full rounded-xl border border-white/10" width="1672" height="941" fetchPriority="high" />
+                            <figcaption className="mt-1 text-xs text-slate-400">Promotional artwork · Actual development gameplay below</figcaption>
+                        </figure>
+                        <div className="mt-5 flex flex-wrap items-center gap-3 sm:mt-7">
+                            <a href={kickstarterUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackKickstarterClick("hero")} className="rounded-lg bg-emerald-500 px-6 py-3.5 text-center text-sm font-extrabold text-slate-950 shadow-lg shadow-emerald-950/20 hover:bg-emerald-400">
                                 Follow Naughty List on Kickstarter ↗
                             </a>
                             <a href="#gameplay" className="rounded-lg border border-white/25 px-5 py-3 text-sm font-bold text-white hover:bg-white/10">Watch 10+ minutes of gameplay</a>
@@ -73,7 +77,7 @@ export default function NaughtyList() {
                         </div>
                     </div>
 
-                    <figure>
+                    <figure className="hidden lg:block">
                         <img src="/press/naughty-list/NaughtyList_KeyArt_Gameplay.png" alt="Naughty List promotional key art for the early development gameplay showcase" className="w-full rounded-2xl border border-white/10 shadow-2xl" width="1672" height="941" fetchPriority="high" />
                         <figcaption className="mt-2 text-xs text-slate-400">Promotional key art. Current gameplay visuals are shown below.</figcaption>
                     </figure>
