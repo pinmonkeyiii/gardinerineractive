@@ -12,7 +12,13 @@ RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false /p:BuildClient
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
-# Don't create Linux inotify watchers for appsettings changes.
+# Refresh operating-system packages and certificate trust store.
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 
 COPY --from=build /app/publish .
