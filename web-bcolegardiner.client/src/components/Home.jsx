@@ -4,6 +4,7 @@ import siteIcon from "/Icon.png";
 import bookCover from "/heart-of-the-loom-cover.png";
 import Newsletter from "./Newsletter";
 import Seo from "./Seo";
+import { trackKickstarterClick, trackGameStoreClick } from "../lib/analytics";
 
 export default function Home() {
     return (
@@ -42,7 +43,7 @@ export default function Home() {
                                     <p className="mt-3 text-slate-700">Explore Evergreen, question residents, physically uncover evidence, gain access to restricted locations, and decide what the facts support without a glowing arrow solving the case for you.</p>
                                     <div className="mt-5 flex flex-wrap gap-4">
                                         <Link to="/naughty-list" className="font-bold text-red-800 hover:text-red-600">Investigate Naughty List →</Link>
-                                        <a href="https://www.kickstarter.com/projects/gardinerinteractive/naughty-list" target="_blank" rel="noopener noreferrer" className="font-bold text-slate-700 hover:text-slate-950">Follow on Kickstarter ↗</a>
+                                        <a href="https://www.kickstarter.com/projects/gardinerinteractive/naughty-list" onClick={() => trackKickstarterClick("homepage")} target="_blank" rel="noopener noreferrer" className="font-bold text-slate-700 hover:text-slate-950">Follow on Kickstarter ↗</a>
                                     </div>
                                 </div>
                             </article>
@@ -65,7 +66,7 @@ export default function Home() {
                                 <p className="mt-2 text-slate-700">Build words from falling letters, clear the board, use tactical helpers, and chase one more level in a fast, replayable puzzle game.</p>
                                 <div className="mt-5 flex flex-wrap gap-4">
                                     <Link to="/lettriis" className="font-bold text-emerald-800 hover:text-emerald-600">Play Lettriis →</Link>
-                                    <a href="https://play.google.com/store/apps/details?id=com.gardinerinteractive.lettriis" target="_blank" rel="noopener noreferrer" className="font-bold text-slate-700 hover:text-slate-950">Google Play ↗</a>
+                                    <a href="https://play.google.com/store/apps/details?id=com.gardinerinteractive.lettriis" onClick={() => trackGameStoreClick("Lettriis", "homepage", "https://play.google.com/store/apps/details?id=com.gardinerinteractive.lettriis")} target="_blank" rel="noopener noreferrer" className="font-bold text-slate-700 hover:text-slate-950">Google Play ↗</a>
                                 </div>
                             </article>
 

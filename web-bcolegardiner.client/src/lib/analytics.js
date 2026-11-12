@@ -24,3 +24,21 @@ export function trackKickstarterClick(placement) {
         game: "Naughty List",
     });
 }
+
+// Record only successful, newly created newsletter subscriptions.
+export function trackNewsletterSignup(placement) {
+    gtag("event", "generate_lead", {
+        lead_source: "newsletter",
+        placement,
+    });
+}
+
+// This measures intent to visit a store, not a confirmed installation.
+export function trackGameStoreClick(game, placement, linkUrl) {
+    gtag("event", "game_store_click", {
+        game,
+        store: "Google Play",
+        placement,
+        link_url: linkUrl,
+    });
+}

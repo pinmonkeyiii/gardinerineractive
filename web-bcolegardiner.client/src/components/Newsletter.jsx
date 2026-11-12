@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Spinner from "../components/Spinner";
+import { trackNewsletterSignup } from "../lib/analytics";
 
 export default function Newsletter({ context = "general" }) {
     const [email, setEmail] = useState("");
@@ -24,8 +25,8 @@ export default function Newsletter({ context = "general" }) {
             if (!res.ok) throw new Error(await res.text());
             const data = await res.json().catch(() => ({}));
             setStatus({ type: "success", text: data.message || "Subscription received!" });
-            if (data.created === true && typeof window !== "undefined" && typeof window.gtag === "function") {
-                window.gtag("event", "generate_lead", { lead_source: "newsletter", placement: context });
+            if (data.created === true) {
+                trackNewsletterSignup(context);
             }            
             setEmail("");
             setName("");

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Seo from "./Seo";
+import { trackKickstarterClick } from "../lib/analytics";
 
 const projectUrl = "https://www.kickstarter.com/projects/gardinerinteractive/naughty-list";
 const gameplayUrl = "https://youtu.be/JwQMIgiyUW0";
@@ -172,7 +173,7 @@ export default function NaughtyListPress() {
                         <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm">
                             <h2 className="text-lg font-bold text-slate-950">Links</h2>
                             <div className="mt-4 flex flex-col items-start gap-3 text-sm font-bold">
-                                <a href={projectUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-800 hover:text-emerald-600">Kickstarter pre-launch ↗</a>
+                                <a href={projectUrl} onClick={() => trackKickstarterClick("press_kit")} target="_blank" rel="noopener noreferrer" className="text-emerald-800 hover:text-emerald-600">Kickstarter pre-launch ↗</a>
                                 <a href={gameplayUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-800 hover:text-emerald-600">Gameplay video ↗</a>
                                 <Link to="/naughty-list" className="text-emerald-800 hover:text-emerald-600">Public game page →</Link>
                                 <a href="/press/naughty-list/NaughtyList_Press_Media.zip" download className="text-emerald-800 hover:text-emerald-600">Media pack ↓</a>
