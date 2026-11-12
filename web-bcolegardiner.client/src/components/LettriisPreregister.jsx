@@ -1,6 +1,7 @@
 import React from "react";
 import PageContainer from "./PageContainer";
 import Seo from "./Seo";
+import Newsletter from "./Newsletter";
 
 const googlePlayUrl =
     "https://play.google.com/store/apps/details?id=com.gardinerinteractive.lettriis&utm_source=website&utm_campaign=launch";
@@ -223,6 +224,12 @@ export default function LettriisPreregister() {
                         >
                             Download for Windows
                         </a>
+                    </div>
+                </section>
+
+                <section className="px-2 py-8">
+                    <div className="rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm sm:p-8">
+                        <Newsletter context="lettriis" />
                     </div>
                 </section>
 

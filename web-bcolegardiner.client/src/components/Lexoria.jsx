@@ -1,3 +1,4 @@
+import Newsletter from "./Newsletter";
 import React from "react";
 import { Link } from "react-router-dom";
 import Seo from "./Seo";
@@ -102,6 +103,7 @@ export default function Lexoria() {
                     </div>
                 </div>
             </section>
+            <section className="mx-auto max-w-5xl px-4 py-10 pb-14"><div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><Newsletter context="lexoria" /></div></section>
         </>
     );
 }

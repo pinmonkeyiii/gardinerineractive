@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using web_bcolegardiner.server.Services;
 using web_BcoleGardiner.Server.Models;
 
@@ -18,7 +18,7 @@ public class NewsletterController : ControllerBase
         try
         {
             if (store.Exists(email))
-                return Ok(new { message = "Email address is already subscribed." });
+                return Ok(new { message = "Email address is already subscribed.", created = false });
 
             store.Add(new NewsletterSubscription
             {
@@ -26,12 +26,12 @@ public class NewsletterController : ControllerBase
                 Name = string.IsNullOrWhiteSpace(name) ? email : name
             });
 
-            return Ok(new { message = "Subscription successful!" });
+            return Ok(new { message = "Subscription successful!", created = true });
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             // This is gold while debugging locally
-            return StatusCode(500, new { message = ex.Message });
+            return StatusCode(500, new { message = "Unable to complete subscription right now. Please try again later." });
         }
     }
 

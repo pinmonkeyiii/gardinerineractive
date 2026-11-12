@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 const links = [
-    ["/", "Home", true], ["/about", "About"], ["/heart-of-the-loom", "Books"],
+    ["/", "Home", true], ["/about", "About"], ["/books", "Books"],
     ["/lettriis", "Lettriis"], ["/lexoria", "Lexoria"], ["/naughty-list", "Naughty List"],
     ["/portfolio", "Portfolio"], ["/blog", "Blog"], ["/contact", "Contact"],
 ];

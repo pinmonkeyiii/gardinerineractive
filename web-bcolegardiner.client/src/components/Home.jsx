@@ -110,7 +110,7 @@ export default function Home() {
                         </div>
                     </section>
 
-                    <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><Newsletter /></div>
+                    <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><Newsletter context="home" /></div>
                 </div>
             </section>
         </>

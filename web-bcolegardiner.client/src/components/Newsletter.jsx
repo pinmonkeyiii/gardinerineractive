@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Spinner from "../components/Spinner";
 
-export default function Newsletter() {
+export default function Newsletter({ context = "general" }) {
     const [email, setEmail] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [name, setName] = useState("");
@@ -23,7 +23,10 @@ export default function Newsletter() {
 
             if (!res.ok) throw new Error(await res.text());
             const data = await res.json().catch(() => ({}));
-            setStatus({ type: "success", text: data.message || "Subscribed successfully!" });            
+            setStatus({ type: "success", text: data.message || "Subscription received!" });
+            if (data.created === true && typeof window !== "undefined" && typeof window.gtag === "function") {
+                window.gtag("event", "generate_lead", { lead_source: "newsletter", placement: context });
+            }            
             setEmail("");
             setName("");
         } catch (err) {
@@ -58,15 +61,15 @@ export default function Newsletter() {
     }, [status]);
 
     return (
-        <div className="mt-12">
-            <h2 className="text-2xl font-bold text-slate-900">Join My Newsletter</h2>
+        <div className="">
+            <h2 className="text-2xl font-bold text-slate-900">Get Occasional Updates</h2>
             <p className="text-slate-700 mt-2 mb-6">
-                Get updates on upcoming books, writing insights, and more.
+                News about books, game development, releases, and behind-the-scenes progress. No spam.
             </p>
 
             <form
                 onSubmit={handleSubmit}
-                className="grid gap-3 sm:grid-cols-2 sm:items-center"
+                className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_auto] sm:items-center"
             >
                 <input
                     type="text"
@@ -74,6 +77,8 @@ export default function Newsletter() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your Name (optional)"
+                    aria-label="Name (optional)"
+                    autoComplete="name"
                     className="h-11 w-full rounded-md border border-slate-300 px-4 focus:outline-none focus:ring-2 focus:ring-slate-400"
                 />
                 <input
@@ -83,6 +88,8 @@ export default function Newsletter() {
                     required
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your Email"
+                    aria-label="Email address"
+                    autoComplete="email"
                     className="h-11 w-full rounded-md border border-slate-300 px-4 focus:outline-none focus:ring-2 focus:ring-slate-400"
                 />
 
@@ -97,7 +104,7 @@ export default function Newsletter() {
                                 font-medium text-white
                                 hover:bg-slate-800
                                 disabled:opacity-60 disabled:cursor-not-allowed
-                                sm:col-span-2 sm:w-fit sm:justify-self-end
+                                sm:col-span-2 sm:w-fit sm:justify-self-end lg:col-span-1 lg:justify-self-stretch
                               "
                 >
                     {isSubmitting ? (
@@ -114,6 +121,7 @@ export default function Newsletter() {
 
             </form>
 
+            <p className="mt-3 text-xs text-slate-500">By subscribing, you agree to receive occasional email updates. Unsubscribe anytime.</p>
             {status && (
                 <p
                     className={[
